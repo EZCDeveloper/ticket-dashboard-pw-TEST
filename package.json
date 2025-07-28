@@ -1,0 +1,13 @@
+{
+  "name": "ticket-dashboard-pw-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Emanuel Zini Casaro",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.1.0"
+  }
+}
