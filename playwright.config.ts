@@ -14,10 +14,14 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  reporter: [
+    ['html'],
+    ['./support/reporter/error-reporter.ts']
+  ],
   use: {
     baseURL: process.env.BASE_URL,
     trace: 'on-first-retry',
+    viewport: { width: 1920, height: 1080 }, // Cambia el tamaño aquí
   },
   projects: [
     {
