@@ -26,7 +26,7 @@
   - A success message is displayed (e.g., "Ticket created successfully").
   - The new ticket appears in the ticket list or in the ticket details view.
   - The user may be redirected to the ticket detail page or remain on the current page with the list updated.
-  - The ticket data is persisted correctly in the database.
+  - The ticket data is persisted correctly in the database (we should do)
   - The application does not display any errors.
 
 ---
