@@ -36,15 +36,20 @@ export class NewTaskPage {
         await this.page.getByTestId('submit-button').click();
     }
 
+    /**
+     * Create a new ticket successfully.
+     * @title enter title
+     * @description enter description
+     */
     async createTicket(ticketDetails: {
-        title: string,
+        title?: string,
         description: string,
         category: string,
         priority: string,
         progress: string,
         status: string
     }) {
-        await this.fillTitle(ticketDetails.title)
+        if (ticketDetails.title) { await this.fillTitle(ticketDetails.title) }
         await this.fillDescription(ticketDetails.description)
         await this.selectCategory(ticketDetails.category)
         await this.selectPriority(ticketDetails.priority)
