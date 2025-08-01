@@ -52,4 +52,8 @@ export class NewTaskPage {
         await this.selectStatus(ticketDetails.status)
         await this.submitTicket()
     }
+
+    async getLastTicket(text: string) {
+        return this.page.getByText(text).last()
+    }
 }

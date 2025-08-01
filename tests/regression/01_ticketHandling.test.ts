@@ -14,9 +14,9 @@ test.describe('1. CRUD Tickets', () => {
          // 2. Act: Create a ticket
          await newTaskPage.createTicket(TEST_DATA.ticket[0])
 
-         // 3. Assert: Verify the ticket is created
-         const ticketTitle = page.getByText(TEST_DATA.ticket[0].title).last()
-         await expect(ticketTitle).toBeVisible()
+         // 3. Assert: Verify the ticket is created (last)
+         const ticketTitle = await newTaskPage.getLastTicket(TEST_DATA.ticket[0].title)
+         await expect(ticketTitle).toHaveText(TEST_DATA.ticket[0].title)
       })
 
    test('TC-1.2. Fail to Create a Ticket: Name Is Missing',
