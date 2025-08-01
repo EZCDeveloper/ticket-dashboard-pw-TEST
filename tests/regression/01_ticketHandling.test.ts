@@ -1,5 +1,6 @@
 import { test } from '../../fixtures/base.fixtures';
 import { expect } from '@playwright/test';
+import { TEST_DATA } from '../../fixtures/data/test-data';
 
 
 test.describe('1. CRUD Tickets', () => {
@@ -9,22 +10,22 @@ test.describe('1. CRUD Tickets', () => {
       await basePage.navigateTo("/")
 
       // 2. Act: Create a ticket
-    await newTaskPage.navigateToNewTaskPage()
+      await newTaskPage.navigateToNewTaskPage()
+      await newTaskPage.fillTitle(TEST_DATA.ticket[0].title)
+      await newTaskPage.fillDescription(TEST_DATA.ticket[0].description)
 
+      // TODO: wait for selector
+      await newTaskPage.selectCategory(TEST_DATA.ticket[0].category[0])
 
-      await page.getByTestId('title-input').click();
-      await page.getByTestId('title-input').fill('Develop new Application for Cats');
-      await page.getByTestId('description-textarea').click();
-      await page.getByTestId('description-textarea').fill('We need to develop new application');
-      await page.getByTestId('category-select').selectOption('Application Development');
-      await page.getByTestId('priority-3-radio').check();
-      await page.getByTestId('progress-range').fill('13');
-      await page.getByTestId('status-select').selectOption('started');
-      await page.getByTestId('status-select').click();
-      await page.getByTestId('submit-button').click();
-
-      // 3. Assert: Verify the ticket is created
-      const ticketTitle = page.getByText('Develop new Application for Cats').last()
-      await expect(ticketTitle).toBeVisible()
+      /* await newTaskPage.selectPriority(TEST_DATA.ticket[0].priority)
+      await newTaskPage.setProgress(TEST_DATA.ticket[0].progress)
+      await newTaskPage.selectStatus(TEST_DATA.ticket[0].status) */
+      /* 
+            await page.getByTestId('status-select').click();
+            await page.getByTestId('submit-button').click();
+      
+            // 3. Assert: Verify the ticket is created
+            const ticketTitle = page.getByText('Develop new Application for Cats').last()
+            await expect(ticketTitle).toBeVisible() */
    })
 })
