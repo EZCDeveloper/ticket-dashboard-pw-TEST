@@ -13,19 +13,14 @@ test.describe('1. CRUD Tickets', () => {
       await newTaskPage.navigateToNewTaskPage()
       await newTaskPage.fillTitle(TEST_DATA.ticket[0].title)
       await newTaskPage.fillDescription(TEST_DATA.ticket[0].description)
-
-      // TODO: wait for selector
-      await newTaskPage.selectCategory(TEST_DATA.ticket[0].category[0])
-
-      /* await newTaskPage.selectPriority(TEST_DATA.ticket[0].priority)
+      await newTaskPage.selectCategory(TEST_DATA.ticket[0].category)
+      await newTaskPage.selectPriority(TEST_DATA.ticket[0].priority)
       await newTaskPage.setProgress(TEST_DATA.ticket[0].progress)
-      await newTaskPage.selectStatus(TEST_DATA.ticket[0].status) */
-      /* 
-            await page.getByTestId('status-select').click();
-            await page.getByTestId('submit-button').click();
-      
-            // 3. Assert: Verify the ticket is created
-            const ticketTitle = page.getByText('Develop new Application for Cats').last()
-            await expect(ticketTitle).toBeVisible() */
+      await newTaskPage.selectStatus(TEST_DATA.ticket[0].status)
+      await newTaskPage.submitTicket()
+
+      // 3. Assert: Verify the ticket is created
+      const ticketTitle = page.getByText(TEST_DATA.ticket[0].title).last()
+      await expect(ticketTitle).toBeVisible()
    })
 })

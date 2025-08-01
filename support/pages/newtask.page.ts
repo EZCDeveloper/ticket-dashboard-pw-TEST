@@ -17,7 +17,7 @@ export class NewTaskPage {
     }
 
     async selectCategory(option: string) {
-        await this.page.getByTestId('category-select').selectOption(option);
+        await this.page.getByTestId('category-select').filter({ visible: true }).selectOption(option);
     }
 
     async selectPriority(selectLevel: string) {
@@ -30,5 +30,9 @@ export class NewTaskPage {
 
     async selectStatus(status: string) {
         await this.page.getByTestId('status-select').selectOption(status);
+    }
+
+    async submitTicket() {
+        await this.page.getByTestId('submit-button').click();
     }
 }
