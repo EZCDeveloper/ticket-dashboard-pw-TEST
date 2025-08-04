@@ -23,10 +23,10 @@
   5. Confirm that the new ticket appears in the ticket list or detail view.
 
 - **Expected Results:**
-  - A success message is displayed (e.g., "Ticket created successfully").
+  - A success message is displayed (e.g., "Ticket created successfully"). (not implemented yet)
   - The new ticket appears in the ticket list or in the ticket details view.
-  - The user may be redirected to the ticket detail page or remain on the current page with the list updated.
-  - The ticket data is persisted correctly in the database (we should do)
+  - The user may be redirected to the ticket detail page or remain on the current page with the list updated. (should do)
+  - The ticket data is persisted correctly in the database (should do)
   - The application does not display any errors.
 
 ---
@@ -40,7 +40,7 @@
 - **Priority:** High  
 - **Type:** E2E / UI  
 - **Preconditions:**
-  - The user is successfully logged into the application.
+  - The user is successfully logged into the application. (not aplicable yet)
   - The "Create Ticket" page is available and accessible.
   - The user has permissions to create a ticket.
 
@@ -52,10 +52,10 @@
 
 - **Expected Results:**
   - The ticket **is not** created.
-  - The system displays an error message indicating that the "name" field is required (e.g., "Name field is required").
-  - The user remains on the same page.
-  - No valid request is sent to the backend, or a validation error is returned (e.g., HTTP 400).
-  - No incomplete data is stored in the database.
+  - The system displays an error message indicating that the "name" field is required (e.g., "Name field is required"). (should do)
+  - The user remains on the same page (should do)
+  - No valid request is sent to the backend, or a validation error is returned (e.g., HTTP 400). (should do)
+  - No incomplete data is stored in the database. (should do)
 
 ---
 
@@ -68,7 +68,7 @@
 - **Priority:** High  
 - **Type:** E2E / UI  
 - **Preconditions:**
-  - The user is logged into the application.
+  - The user is logged into the application (not implemented yet)
   - At least one ticket exists in the system.
   - The "Edit Ticket" functionality is available and accessible.
 

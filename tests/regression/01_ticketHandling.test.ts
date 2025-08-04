@@ -5,7 +5,7 @@ import { TEST_DATA } from '../../fixtures/data/test-data';
 
 test.describe('1. CRUD Tickets', () => {
 
-   test('TC-1.1. Create a Ticket Successfully',
+   test('[TC-1.1.] Create a Ticket Successfully',
       async ({ page, basePage, newTaskPage }) => {
          // 1. Arrange: Navigate to the home page
          await basePage.navigateTo("/")
@@ -19,7 +19,7 @@ test.describe('1. CRUD Tickets', () => {
          await expect(ticketTitle).toHaveText(TEST_DATA.ticket[0].title)
       })
 
-   test.only('TC-1.2. Fail to Create a Ticket: Title Is Missing',
+   test('[TC-1.2.] Fail to Create a Ticket: Title Is Missing',
       async ({ page, basePage, newTaskPage }) => {
 
          // 1. Arrange: Navigate to the home page
@@ -38,5 +38,32 @@ test.describe('1. CRUD Tickets', () => {
          // 4. Add an assertion to validate the expected behavior 
          const lastCard = await newTaskPage.getLastTicket(TEST_DATA.ticket[0].title);
          await expect(lastCard).not.toBeVisible();
+      })
+
+   test('[TC-1.3.] Update Ticket Successfully',
+      async ({ page, basePage, newTaskPage }) => {
+
+         // 1. Arrange: Navigate to the home page
+         await basePage.navigateTo("/")
+         await newTaskPage.navigateToNewTaskPage()
+
+         // 2. Prepare ticket details without title
+         const ticketWithNewName = {
+            ...TEST_DATA.ticket[0],
+            title: `Updated name ${new Date().toISOString()}`,
+         }
+
+         // 3. Create the ticket
+         // TIP: try to create the task by API (this step)
+         await newTaskPage.createTicket(ticketWithNewName)
+
+         // 4. Click on last ticket created
+         const newTitle = ticketWithNewName.title
+         const lastCard = await newTaskPage.getLastTicket(newTitle)
+         await lastCard.click()
+
+         // 5. Update ticket
+         await newTaskPage.createTicket(TEST_DATA.ticket[1])
+
       })
 })
