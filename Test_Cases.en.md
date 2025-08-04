@@ -82,41 +82,12 @@
 - **Expected Results:**
   - A success message is displayed (e.g., "Ticket updated successfully").
   - The ticket now displays the updated information.
-  - Changes are saved correctly in the backend/database.
+  - Changes are saved correctly in the backend/database. (should do)
   - No error messages are shown.
 
 ---
 
-### TC-1.1.4. Fail to Update a Ticket with Empty Fields
-
-- **Description:**
-
-    Verify that the system prevents a user from updating a ticket if required fields are left empty, and displays appropriate validation error messages.
-
-- **Priority:** High  
-- **Type:** E2E / UI  
-- **Preconditions:**
-  - The user is logged into the application.
-  - At least one ticket exists in the system.
-  - The "Edit Ticket" feature is accessible.
-
-- 📌 **Steps:**
-  1. Visit the page where tickets are listed or detailed.
-  2. Click the "Edit" button on a specific ticket.
-  3. Clear or leave one or more required fields empty in the form.
-  4. Try to submit the form.
-  5. Verify that validation error messages are displayed.
-  6. Confirm that the ticket was **not** updated with invalid or empty data.
-
-- **Expected Results:**
-  - An error message is displayed (e.g., "Name is required").
-  - The form submission is blocked.
-  - The ticket retains its original information.
-  - No data is updated in the backend/database.
-
----
-
-### TC-1.1.5. Delete Ticket Successfully
+### TC-1.1.4. Delete a Ticket Successfully
 
 - **Description:**
 

@@ -21,28 +21,26 @@ test.describe('1. CRUD Tickets', () => {
 
    test('[TC-1.2.] Fail to Create a Ticket: Title Is Missing',
       async ({ page, basePage, newTaskPage }) => {
-
          // 1. Arrange: Navigate to the home page
          await basePage.navigateTo("/")
          await newTaskPage.navigateToNewTaskPage()
 
-         // 2. Prepare ticket details without title
+         // 2. Act: Prepare ticket details without title
          const ticketWithoutTitle = {
             ...TEST_DATA.ticket[0],
             title: undefined
          }
 
-         // 3. Attempt to create a ticket and verify behaviour
+         // 3. Act: Attempt to create a ticket and verify behaviour
          await newTaskPage.createTicket(ticketWithoutTitle)
 
-         // 4. Add an assertion to validate the expected behavior 
+         // 4. Assert: Add an assertion to validate the expected behavior 
          const lastCard = await newTaskPage.getLastTicket(TEST_DATA.ticket[0].title);
          await expect(lastCard).not.toBeVisible();
       })
 
    test('[TC-1.3.] Update Ticket Successfully',
       async ({ page, basePage, newTaskPage }) => {
-
          // 1. Arrange: Navigate to the home page
          await basePage.navigateTo("/")
          await newTaskPage.navigateToNewTaskPage()
@@ -64,6 +62,22 @@ test.describe('1. CRUD Tickets', () => {
 
          // 5. Update ticket
          await newTaskPage.createTicket(TEST_DATA.ticket[1])
+      })
 
+   test('[TC-1.1.4. Delete Ticket Successfully]',
+      async ({ page, basePage, newTaskPage }) => {
+         // 1. Arrange: Navigate to the home page
+         await basePage.navigateTo("/")
+         await newTaskPage.navigateToNewTaskPage()
+
+         // 2. Prepare ticket details without title
+         const ticketWithNewName = {
+            ...TEST_DATA.ticket[0],
+            title: `Updated name ${new Date().toISOString()}`,
+         }
+
+         // 3. Create the ticket
+         // TIP: try to create the task by API (this step)
+         await newTaskPage.createTicket(ticketWithNewName)
       })
 })
