@@ -61,4 +61,20 @@ export class NewTaskPage {
     async getLastTicket(text: string) {
         return this.page.getByText(text).last()
     }
+
+    async navigateToHomePage() {
+        await this.page.goto('/');
+    }
+
+    async getTicketIdFromList(ticketTitle: string): Promise<string> {
+        const ticketLink = this.page.locator('a').filter({ hasText: ticketTitle }).last();
+        const href = await ticketLink.getAttribute('href');
+        const urlMatch = href?.match(/\/TicketPage\/([a-f0-9]+)/);
+        return urlMatch![1];
+    }
+
+    async deleteTicketById(id: string) {
+        const deleteButton = this.page.locator(`[data-testid="delete-block-icon-${id}"]`).filter({ visible: true })
+        await deleteButton.click();
+    }
 }

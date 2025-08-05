@@ -45,7 +45,7 @@ test.describe('1. CRUD Tickets', () => {
          await basePage.navigateTo("/")
          await newTaskPage.navigateToNewTaskPage()
 
-         // 2. Prepare ticket details without title
+         // 2. Prepare ticket details with new title
          const ticketWithNewName = {
             ...TEST_DATA.ticket[0],
             title: `Updated name ${new Date().toISOString()}`,
@@ -64,20 +64,32 @@ test.describe('1. CRUD Tickets', () => {
          await newTaskPage.createTicket(TEST_DATA.ticket[1])
       })
 
-   test('[TC-1.1.4. Delete Ticket Successfully]',
+   test('[TC-1.4.] Delete Ticket Successfully',
       async ({ page, basePage, newTaskPage }) => {
          // 1. Arrange: Navigate to the home page
          await basePage.navigateTo("/")
          await newTaskPage.navigateToNewTaskPage()
 
-         // 2. Prepare ticket details without title
+         // 2. Prepare ticket details with new title
          const ticketWithNewName = {
             ...TEST_DATA.ticket[0],
             title: `Updated name ${new Date().toISOString()}`,
          }
 
          // 3. Create the ticket
-         // TIP: try to create the task by API (this step)
          await newTaskPage.createTicket(ticketWithNewName)
+
+         // 4. Navigate to home page to see the ticket in the list
+         await newTaskPage.navigateToHomePage()
+
+         // 5. Get the ticket ID from the ticket list
+         const ticketId = await newTaskPage.getTicketIdFromList(ticketWithNewName.title);
+
+         // 6. Delete the ticket using the ID
+         await newTaskPage.deleteTicketById(ticketId);
+
+         // 7. Assert: Verify the ticket is deleted
+         const deletedTicket = await newTaskPage.getLastTicket(ticketWithNewName.title);
+         await expect(deletedTicket).not.toBeVisible();
       })
 })
